@@ -5,7 +5,7 @@
         h2 {{ $t('brokenTask') }}
         div
           button.btn.btn-primary(@click='unlink("keep")') {{ $t('keepIt') }}
-          button.btn.btn-danger(@click='removeTask(obj)') {{ $t('removeIt') }}
+          button.btn.btn-danger(@click='removeTask()') {{ $t('removeIt') }}
       div(v-if='brokenChallengeTask.challenge.broken === "CHALLENGE_DELETED"')
         h2 {{ $t('brokenChallenge') }}
         div
@@ -83,6 +83,7 @@ export default {
     removeTask () {
       if (!confirm('Are you sure you want to delete this task?')) return;
       this.destroyTask(this.brokenChallengeTask);
+      this.close();
     },
     close () {
       this.$store.state.brokenChallengeTask = {};
